@@ -1,0 +1,14 @@
+target/
+*.class
+.env
+*.env
+.idea/
+*.iml
+*.iml
+*.eml
+.vscode/
+*.log
+logs/
+Thumbs.db
+.DS_Store
+HELP.md
