@@ -120,22 +120,3 @@ jobs:
         run: |
           docker tag gateway-service:latest ghcr.io/devsecops-microservices/gateway-service:latest
           docker push ghcr.io/devsecops-microservices/gateway-service:latest
-
-      - name: Deploy gateway-service
-        run: |
-          docker stop gateway-service || true
-          docker rm gateway-service || true
-          docker pull ghcr.io/devsecops-microservices/gateway-service:latest
-          docker run -d \
-            --name gateway-service \
-            -p 8880:8880 \
-            --restart unless-stopped \
-            -e SPRING_PROFILES_ACTIVE=docker \
-            ghcr.io/devsecops-microservices/gateway-service:latest
-          sleep 15
-          echo "gateway-service deployed successfully"
-
-      - name: Verify deployment
-        run: |
-          docker ps | grep gateway-service
-          echo "Container is running"
